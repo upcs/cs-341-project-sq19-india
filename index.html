@@ -1,1 +1,59 @@
+<!--
+  Author: Fishback, Chris
+  Sprint 1
+  Basic website html
+-->
+<html lang="en">
 
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- <script src=""></script> -->
+  <!-- <link rel="stylesheet" href=""> -->
+</head>
+
+<!-- main body html -->
+<body>
+
+  <!-- page heading -->
+  <h1 id="heading">Portland Disaster Guesstimater</h1>
+
+
+  <h4 id="coordinatesInput">Input Coordinates</h4>
+  <!-- table used to allow the coordinate inputs to be side by side -->
+  <table>
+      <tr>
+        <td><div>
+
+          <!-- first coorinate input -->
+          <input type="text" name="firstNum">
+
+        </div></td>
+
+        <td><div>
+
+          <!-- second coorinate input -->
+          <input type="text" name="secondNum">
+
+        </div></td>
+      </tr>
+  </table>
+
+  <!-- type of disaster -->
+  <select>
+    <option value="Tornado">Tornado</option>
+    <option value="Tsunami">Tsunami</option>
+    <option value="Earthquake">Earthquake</option>
+  </select>
+
+  <button type="button" onclick="buttonPressed()">Submit</button>
+
+
+  <br>
+  <br>
+
+  <!-- main page image -->
+  <img src="http://www.helpfulinvesting.com/wp-content/uploads/2015/01/portland-county-map.gif" alt="Portland" height="300" width="300">
+
+</body>
+</html>
