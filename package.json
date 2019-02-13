@@ -22,5 +22,9 @@
   "homepage": "https://github.com/upcs/cs-341-project-sq19-india#readme",
   "devDependencies": {
     "jest": "^24.1.0"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage/",
+	"collectCoverage": true
   }
 }
