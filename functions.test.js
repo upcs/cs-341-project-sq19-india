@@ -5,7 +5,7 @@ test('is 45 and 68 numbers', () => {
 });
 
 test('empty inputs', () => {
-	expect(isNum( , )).toBe(false);
+	expect(isNum("","")).toBe(false);
 });
 
 test('is abc and def numbers', () => {
