@@ -30,3 +30,4 @@ function buttonPressed(firstNum, secondNum) {
 		return false;
 	}
 }
+module.exports = isNum;
