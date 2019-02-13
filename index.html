@@ -8,6 +8,7 @@
 
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="functions.js"></script>
   <!-- <script src="index.js"></script> -->
   <link rel="stylesheet" href="style.css"> 
 </head>
@@ -21,19 +22,20 @@
 
   <h4 id="coordinatesInput">Input Coordinates</h4>
   <!-- table used to allow the coordinate inputs to be side by side -->
+  <form>
   <table>
       <tr>
         <td><div>
 
           <!-- first coorinate input -->
-          <input type="text" name="firstNum">
+          <input type="text" id="x-coor" name="firstNum">
 
         </div></td>
 
         <td><div>
 
           <!-- second coorinate input -->
-          <input type="text" name="secondNum">
+          <input type="text" id="y-coor" name="secondNum">
 
         </div></td>
       </tr>
@@ -46,8 +48,8 @@
     <option value="Earthquake">Earthquake</option>
   </select>
 
-  <button type="button" onclick="buttonPressed()">Submit</button>
-
+  <button type="button" onclick="buttonPressed(document.getElementById('x-coor').value, document.getElementById('y-coor').value)">Submit</button>
+  </form>
 
   <br>
   <br>
