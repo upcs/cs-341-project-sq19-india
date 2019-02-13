@@ -7,15 +7,9 @@
   function: buttonPressed
   check to see if coordinate inputs are correct
 */
-function buttonPressed() {
-	//Get the text object
-	var firstBox = document.getElementById('x-coor');
-	var secondBox = document.getElementById('y-coor');
-	//Get the input of the text objects
-	var firstInput = firstBox.value;
-	var secondInput = secondBox.value;
+function buttonPressed(firstNum, secondNum) {
 	//Check to see if any of the box is empty, return false if it is
-	if(firstInput == "" || secondInput == ""){
+	if(firstNum == "" || secondNum == ""){
 		alert('one of the box is empty.');
 		return  false;
 	}
@@ -27,7 +21,7 @@ function buttonPressed() {
 	Date: 2/12/2019
 	*/
 	//Check the coordinate inputs are number
-	if(!isNaN(firstInput) && !isNaN(secondInput)) {
+	if(!isNaN(firstNum) && !isNaN(secondNum)) {
 		alert('coordinate inputs are correct.');
 		return true;
 	}
