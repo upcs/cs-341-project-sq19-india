@@ -9,5 +9,5 @@ test('empty inputs', () => {
 });
 
 test('is abc and def numbers', () => {
-	expect(isNum(adc, def)).toBe(false);
+	expect(isNum("adc", "def")).toBe(false);
 });

@@ -9,7 +9,7 @@
 */
 function buttonPressed(firstNum, secondNum) {
 	//Check to see if any of the box is empty, return false if it is
-	if(firstNum == "" || secondNum == ""){
+	if(firstNum === "" || secondNum === ""){
 		alert('one of the box is empty.');
 		return  false;
 	}
