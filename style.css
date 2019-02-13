@@ -1,1 +1,84 @@
 
+/*
+Author: Devin Smith
+Sprint 1
+02-10-2019
+
+Basic style sheet:
+    -Changes background color
+    -Resizes Image
+    -Moves text and other features to right side of screen
+
+*/
+
+body{
+    margin: 0;
+    background: rgba(228, 240, 240, 1);
+    position: relative;
+    height: auto;
+
+}
+
+/*
+change the header:
+    -color
+    -add border
+*/
+h1{
+    background: rgba(228, 240, 240, 1);
+    margin-bottom: 0;
+    color: rgba(0, 80, 120, 1);
+    border-bottom-style: solid;
+    border-color: rgba(78, 121, 136, 1);
+
+}
+/*
+resize image 
+*/
+
+img{
+    transform: scale(2.5, 2.25);
+    margin-top: 41;
+    margin-left: 225; 
+}
+
+
+/*
+change colors and reposition
+*/
+h4{
+    /*move to right*/
+    color: rgba(0, 80, 120, 1);
+    text-align: right;
+    margin-right: 200;
+
+}
+
+
+table{
+    /*move to right*/
+    margin-left: auto;
+    margin-right: 125px;
+    margin-bottom: 25px;
+    border-radius: 7px;
+}
+
+select{
+    /*move to right*/
+    position: absolute;
+    right: 279px;
+    background-color:aliceblue;
+    color: rgba(0, 80, 120, 1);
+
+}
+
+button{
+    /*move to right*/
+    position: absolute;
+    right: 181px;
+    color: rgba(0, 80, 120, 1);
+    background-color: aliceblue;
+    border-radius: 7px;
+
+    
+}
