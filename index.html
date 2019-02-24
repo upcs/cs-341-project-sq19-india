@@ -10,7 +10,25 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="functions.js"></script>
   <!-- <script src="index.js"></script> -->
-  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="style.css">
+  <style>
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 700px;  /* The height is 400 pixels */
+        width: 80%;  /* The width is the width of the web page */
+       }
+  </style>
+    <script type="text/javascript">
+      function initMap() {
+        // The location of map
+        var local = {lat: 45.572511, lng: -122.730841};
+        // The map, centered at local
+        var map = new google.maps.Map(
+            document.getElementById('map'), {zoom: 10, center: local});
+        // The marker, positioned at local
+        var marker = new google.maps.Marker({position: local, map: map});
+      }
+    </script>
 </head>
 
 <!-- main body html -->
@@ -53,9 +71,11 @@
 
   <br>
   <br>
-
-  <!-- main page image -->
-  <img src="http://www.helpfulinvesting.com/wp-content/uploads/2015/01/portland-county-map.gif" alt="Portland" height="300" width="300">
+  <!--The div element for the map -->
+      <div id="map"></div>
+      <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDACIqFccTEI5LS-TYNRBRHsdV4DlgxHPM&callback=initMap">
+      </script>
 
 </body>
 </html>
