@@ -11,13 +11,41 @@ Basic style sheet:
 
 */
 
+
 body{
     margin: 0;
-    background: rgba(228, 240, 240, 1);
+   /* background: rgba(228, 240, 240, 1);*/
     position: relative;
     height: auto;
+    font-family: "Courier New";
 
 }
+
+/*initiates the grid specified in index.html */
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10px;
+    /*background-color: rgba(228, 240, 240, 1);*/
+    padding: 10px;
+  }
+  
+  .grid-container > div {
+    background-color:  white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 30px;
+  }
+  /*change */
+  @media only screen and (max-width: 500px) {
+    .item1 { grid-area: 1 / span 3 / 2 / 4; }
+    .item2 { grid-area: 3 / 3 / 4 / 4; }
+    
+  }
+ 
+  .item1{
+    grid-area: 1 / span 2;
+ }
 
 /*
 change the header:
@@ -25,11 +53,14 @@ change the header:
     -add border
 */
 h1{
-    background: rgba(228, 240, 240, 1);
+    font-family: "Courier New";
+    background: rgb(2, 40, 59);/*dark blue*/
     margin-bottom: 0;
-    color: rgba(0, 80, 120, 1);
+    color: rgba(228, 240, 240, 1);/*white*/
     border-bottom-style: solid;
-    border-color: rgba(78, 121, 136, 1);
+    border-color: rgba(78, 121, 136, 1);/*light blue*/
+    font-size: 50;
+
 
 }
 /*
@@ -37,9 +68,9 @@ resize image
 */
 
 img{
-    transform: scale(2.5, 2.25);
-    margin-top: 41;
-    margin-left: 225; 
+    transform: scale(2.5, 2.5);
+    margin-top: 28%;
+    margin-left: auto;
 }
 
 
@@ -49,8 +80,10 @@ change colors and reposition
 h4{
     /*move to right*/
     color: rgba(0, 80, 120, 1);
-    text-align: right;
-    margin-right: 200;
+   /* text-align: right;
+   /* margin-right: 30%;*/
+    margin-bottom: 5%;
+    margin-left: auto;
 
 }
 
@@ -58,15 +91,15 @@ h4{
 table{
     /*move to right*/
     margin-left: auto;
-    margin-right: 125px;
-    margin-bottom: 25px;
+    margin-right: 24%;
+    margin-bottom: 5%;
     border-radius: 7px;
 }
 
 select{
     /*move to right*/
     position: absolute;
-    right: 279px;
+    right: 23%;
     background-color:aliceblue;
     color: rgba(0, 80, 120, 1);
 
@@ -75,7 +108,8 @@ select{
 button{
     /*move to right*/
     position: absolute;
-    right: 181px;
+    right: 15%;
+    left: auto;
     color: rgba(0, 80, 120, 1);
     background-color: aliceblue;
     border-radius: 7px;

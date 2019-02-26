@@ -10,52 +10,68 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="functions.js"></script>
   <!-- <script src="index.js"></script> -->
-  <link rel="stylesheet" href="style.css"> 
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <!-- main body html -->
+
 <body>
 
   <!-- page heading -->
   <h1 id="heading">Portland Disaster Guesstimater</h1>
 
+  <!--grid container to place everything in-->
+  <div class="grid-container">
+    <div class="item1">
+      <!-- main page image -->
+      <img src="http://www.helpfulinvesting.com/wp-content/uploads/2015/01/portland-county-map.gif" alt="Portland"
+        height="300" width="300">
 
-  <h4 id="coordinatesInput">Input Coordinates</h4>
-  <!-- table used to allow the coordinate inputs to be side by side -->
-  <form>
-  <table>
-      <tr>
-        <td><div>
+    </div>
+    <div class="item2">
+      <h4 id="coordinatesInput">Input Coordinates</h4>
+      <!-- table used to allow the coordinate inputs to be side by side -->
+      <form>
+        <table>
+          <tr>
+            <td>
+              <div>
+                <!-- first coorinate input -->
+                <input type="text" id="x-coor" name="firstNum">
 
-          <!-- first coorinate input -->
-          <input type="text" id="x-coor" name="firstNum">
+              </div>
+            </td>
 
-        </div></td>
+            <td>
+              <div>
+                <!-- second coorinate input -->
+                <input type="text" id="y-coor" name="secondNum">
 
-        <td><div>
+              </div>
+            </td>
+          </tr>
+        </table>
 
-          <!-- second coorinate input -->
-          <input type="text" id="y-coor" name="secondNum">
+        <!-- type of disaster -->
+        <select>
+          <option value="Tornado">Tornado</option>
+          <option value="Tsunami">Tsunami</option>
+          <option value="Earthquake">Earthquake</option>
+        </select>
 
-        </div></td>
-      </tr>
-  </table>
 
-  <!-- type of disaster -->
-  <select>
-    <option value="Tornado">Tornado</option>
-    <option value="Tsunami">Tsunami</option>
-    <option value="Earthquake">Earthquake</option>
-  </select>
+        <button type="button" onclick="buttonPressed(document.getElementById('x-coor').value, document.getElementById('y-coor').value)">Submit</button>
 
-  <button type="button" onclick="buttonPressed(document.getElementById('x-coor').value, document.getElementById('y-coor').value)">Submit</button>
+    </div>
+
+  </div>
   </form>
 
   <br>
   <br>
 
-  <!-- main page image -->
-  <img src="http://www.helpfulinvesting.com/wp-content/uploads/2015/01/portland-county-map.gif" alt="Portland" height="300" width="300">
+
 
 </body>
+
 </html>
