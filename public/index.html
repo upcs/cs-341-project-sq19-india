@@ -1,0 +1,89 @@
+<!--
+  Author: Fishback, Chris
+  Sprint 1
+  Basic website html
+-->
+<html lang="en">
+<!--Now in grid form-->
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="javascripts/functions.js"></script>
+  <!-- <script src="index.js"></script> -->
+  <link rel="stylesheet" href="stylesheets/style.css">
+
+  <script type="text/javascript">
+    function initMap() {
+      // The location of map
+      var local = { lat: 45.572511, lng: -122.730841 };
+      // The map, centered at local
+      var map = new google.maps.Map(
+        document.getElementById('map'), { zoom: 10, center: local });
+      // The marker, positioned at local
+      var marker = new google.maps.Marker({ position: local, map: map });
+    }
+  </script>
+</head>
+
+<!-- main body html -->
+
+<body>
+
+  <!-- page heading -->
+  <h1 id="heading">Portland Disaster Guesstimater</h1>
+
+  <!--grid container to place everything in-->
+  <div class="grid-container">
+    <div class="item1">
+      <!--The div element for the map -->
+      <div id="map"></div>
+      <script
+        async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDACIqFccTEI5LS-TYNRBRHsdV4DlgxHPM&callback=initMap">
+      </script>
+
+    </div>
+    <div class="item2">
+      <h4 id="coordinatesInput">Input Coordinates</h4>
+      <!-- table used to allow the coordinate inputs to be side by side -->
+      <form>
+        <table>
+          <tr>
+            <td>
+              <div>
+                <!-- first coorinate input -->
+                <input type="text" id="x-coor" name="firstNum">
+
+              </div>
+            </td>
+
+            <td>
+              <div>
+                <!-- second coorinate input -->
+                <input type="text" id="y-coor" name="secondNum">
+
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- type of disaster -->
+        <select>
+          <option value="Tornado">Tornado</option>
+          <option value="Tsunami">Tsunami</option>
+          <option value="Earthquake">Earthquake</option>
+        </select>
+
+
+        <button type="button" onclick="buttonPressed(document.getElementById('x-coor').value, document.getElementById('y-coor').value)">Submit</button>
+
+    </div>
+
+  </div>
+  </form>
+
+  <br>
+  <br>
+
+</body>
+
+</html>
