@@ -14,38 +14,12 @@ Basic style sheet:
 
 body{
     margin: 0;
-   /* background: rgba(228, 240, 240, 1);*/
     position: relative;
     height: auto;
     font-family: "Georgia";
     width: 100%;
-}
 
-/*initiates the grid specified in index.html */
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 10px;
-    /*background-color: rgba(228, 240, 240, 1);*/
-    padding: 10px;
-  }
-  
-  .grid-container > div {
-    background-color:  white;
-    text-align: center;
-    padding: 20px 0;
-    font-size: 30px;
-  }
-  /*change */
-  @media only screen and (max-width: 500px) {
-    .item1 { grid-area: 1 / span 3 / 2 / 4; }
-    .item2 { grid-area: 3 / 3 / 4 / 4; }
-    
-  }
- 
-  .item1{
-    grid-area: 1 / span 2;
- }
+}
 
 /*
     initiates the grid specified in index.html 
@@ -55,7 +29,7 @@ body{
     display: grid;
     grid-template-columns: 70% 20%;
     grid-gap: 2%;
-    /*padding: 10px;*/
+
   }
   
   .grid-container > div {
@@ -63,16 +37,12 @@ body{
     font-size: 30px;
   }
 
-
-
 /*
 change the header:
     -color
     -add border
 */
 h1{
-
-   /* font-family: "Courier New";*/
     background: rgb(2, 40, 59);/*dark blue*/
     margin-bottom: 0;
     color: rgba(228, 240, 240, 1);/*white*/
@@ -93,8 +63,6 @@ h1{
     change colors and reposition
 */
 h4{
-    /*move to right*/
-    /*font-family: "Courier New";*/
     color: rgba(0, 80, 120, 1);
     text-align: center;
     margin-bottom: 5%;
@@ -104,7 +72,6 @@ h4{
 
 /*input boxes*/
 table{
-    /*move to right*/
     margin-left: auto;
     margin-bottom: 5%;
     border-radius: 7px;
@@ -112,7 +79,6 @@ table{
 
 /*dropdown menu*/
 select{
-    /*move to right*/
     position: absolute;
     right: 15%;
     background-color:aliceblue;
@@ -121,13 +87,10 @@ select{
 }
 /*submit button*/
 button{
-    /*move to right*/
     position: absolute;
     right: 10%;
     left: auto;
     color: rgba(0, 80, 120, 1);
     background-color: aliceblue;
     border-radius: 7px;
-
-    
 }
