@@ -17,8 +17,8 @@ body{
    /* background: rgba(228, 240, 240, 1);*/
     position: relative;
     height: auto;
-    font-family: "Courier New";
-
+    font-family: "Georgia";
+    width: 100%;
 }
 
 /*initiates the grid specified in index.html */
@@ -48,67 +48,82 @@ body{
  }
 
 /*
+    initiates the grid specified in index.html 
+    code is modified from code on w3schools
+*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 70% 20%;
+    grid-gap: 2%;
+    /*padding: 10px;*/
+  }
+  
+  .grid-container > div {
+    text-align: center;
+    font-size: 30px;
+  }
+
+
+
+/*
 change the header:
     -color
     -add border
 */
 h1{
-    font-family: "Courier New";
+
+   /* font-family: "Courier New";*/
     background: rgb(2, 40, 59);/*dark blue*/
     margin-bottom: 0;
     color: rgba(228, 240, 240, 1);/*white*/
     border-bottom-style: solid;
     border-color: rgba(78, 121, 136, 1);/*light blue*/
     font-size: 50;
-
-
 }
-/*
-resize image 
+
+/* 
+    Set the size of the div element that contains the map 
 */
-
-img{
-    transform: scale(2.5, 2.5);
-    margin-top: 28%;
-    margin-left: auto;
-}
-
-
+#map {
+    height: 700px;  /* The height is 400 pixels */
+    width: 100%;  /* The width is the width of the web page */
+   }
+ 
 /*
-change colors and reposition
+    change colors and reposition
 */
 h4{
     /*move to right*/
+    /*font-family: "Courier New";*/
     color: rgba(0, 80, 120, 1);
-   /* text-align: right;
-   /* margin-right: 30%;*/
+    text-align: center;
     margin-bottom: 5%;
     margin-left: auto;
 
 }
 
-
+/*input boxes*/
 table{
     /*move to right*/
     margin-left: auto;
-    margin-right: 24%;
     margin-bottom: 5%;
     border-radius: 7px;
 }
 
+/*dropdown menu*/
 select{
     /*move to right*/
     position: absolute;
-    right: 23%;
+    right: 15%;
     background-color:aliceblue;
     color: rgba(0, 80, 120, 1);
 
 }
-
+/*submit button*/
 button{
     /*move to right*/
     position: absolute;
-    right: 15%;
+    right: 10%;
     left: auto;
     color: rgba(0, 80, 120, 1);
     background-color: aliceblue;
