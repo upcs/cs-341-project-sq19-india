@@ -21,6 +21,12 @@
         document.getElementById('map'), { zoom: 10, center: local });
       // The marker, positioned at local
       var marker = new google.maps.Marker({ position: local, map: map });
+
+      map.addListener('click', function(event){
+        var long = event.latLng.lng();
+        var lat = event.latLng.lat();
+        alert(long+", "+lat);
+      });
     }
   </script>
 </head>
