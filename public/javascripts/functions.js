@@ -7,10 +7,10 @@
   function: buttonPressed
   check to see if coordinate inputs are correct
 */
-function buttonPressed(firstNum, secondNum) {
+function checkCoor(firstNum, secondNum) {
 	//Check to see if any of the box is empty, return false if it is
 	if(firstNum === "" || secondNum === ""){
-		alert('one of the box is empty.');
+		//alert('one of the box is empty.');
 		return  false;
 	}
 	/*
@@ -22,18 +22,23 @@ function buttonPressed(firstNum, secondNum) {
 	*/
 	//Check the coordinate inputs are number
 	if(!isNaN(firstNum) && !isNaN(secondNum)) {
-		alert('coordinate inputs are correct.');
+		//alert('coordinate inputs are correct.');
 		return true;
 	}
 	else {
-		alert('inputs are incorrect, can only be numbers.');
+		//alert('inputs are incorrect, can only be numbers.');
 		return false;
 	}
 }
 //Onclick function for displaying datas
-$().click(function() {
-	$.post("http://localhost:3000/", {}, function(data) {
+$('#submitBtn').click(function() {
+	var firstNum = document.getElementById('x-coor').value;
+	var secondNum = document.getElementById('y-coor').value;
+	if(checkCoor(firstNum, secondNum) == false) {
+		throw 'Incorrect input';
+	}
+	$.post("http://localhost:3000/data", {x-coor:firstNum, y-coor: secondNum}, function(data) {
 		$('#data').html(data);
 	});
 });
-module.exports = buttonPressed;
+module.exports = checkCoor;
