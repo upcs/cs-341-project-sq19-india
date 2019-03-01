@@ -22,10 +22,18 @@ function buttonPressed(firstNum, secondNum) {
 	*/
 	//Check the coordinate inputs are number
 	if(!isNaN(firstNum) && !isNaN(secondNum)) {
-		alert('coordinate inputs are correct.');
-		return true;
+		//check if number is in Portland's general area
+		if(firstNum >= 45.434 && firstNum <= 45.615 && secondNum <= -122.484 && secondNum >= -122.719){	
+			alert('coordinate inputs are correct.');
+			return true;
+		}
+		else{
+			alert('Please choose an area closer to Portland');
+			return false;
+		}
 	}
-	else {
+
+	else{
 		alert('inputs are incorrect, can only be numbers.');
 		return false;
 	}
