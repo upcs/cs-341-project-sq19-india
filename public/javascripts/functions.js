@@ -31,14 +31,18 @@ function checkCoor(firstNum, secondNum) {
 	}
 }
 //Onclick function for displaying datas
-$('#submitBtn').click(function() {
-	var firstNum = document.getElementById('x-coor').value;
-	var secondNum = document.getElementById('y-coor').value;
-	if(checkCoor(firstNum, secondNum) == false) {
-		throw 'Incorrect input';
-	}
-	$.post("http://localhost:3000/data", {x-coor:firstNum, y-coor: secondNum}, function(data) {
-		$('#data').html(data);
+$(document).ready(function() {
+	$('#submitBtn').click(function() {
+		var firstNum = document.getElementById('x-coor').value;
+		var secondNum = document.getElementById('y-coor').value;
+		console.log("x-coor: " + firstNum);
+		console.log("y-coor: " + secondNum);
+		if(checkCoor(firstNum, secondNum) == false) {
+			throw 'Incorrect input';
+		}
+		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor: secondNum}, function(data) {
+			alert(parseInt(data));
+		});
 	});
 });
 module.exports = checkCoor;
