@@ -15,7 +15,7 @@
   <script type="text/javascript">
     function initMap() {
       // The location of map
-      var local = { lat: 45.572511, lng: -122.730841 };
+      var local = { lat: 45.572237, lng: -122.723679 };
       // The map, centered at local
       var map = new google.maps.Map(
         document.getElementById('map'), { zoom: 10, center: local });
@@ -25,8 +25,15 @@
       map.addListener('click', function(event){
         var long = event.latLng.lng();
         var lat = event.latLng.lat();
-        alert(long+", "+lat);
+        $('#x-coor').val(event.latLng.lng());
+        $('#y-coor').val(event.latLng.lat());
+        marker.setPosition(event.latLng);
       });
+
+      map.addListener('mousemove', function(event){
+        $('#x-coor').attr('placeholder',''+event.latLng.lng());
+        $('#y-coor').attr('placeholder',''+event.latLng.lat());
+      })
     }
   </script>
 </head>
