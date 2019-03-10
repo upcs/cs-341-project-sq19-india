@@ -15,12 +15,25 @@
   <script type="text/javascript">
     function initMap() {
       // The location of map
-      var local = { lat: 45.572511, lng: -122.730841 };
+      var local = { lat: 45.572237, lng: -122.723679 };
       // The map, centered at local
       var map = new google.maps.Map(
         document.getElementById('map'), { zoom: 10, center: local });
       // The marker, positioned at local
       var marker = new google.maps.Marker({ position: local, map: map });
+
+      map.addListener('click', function(event){
+        var long = event.latLng.lng();
+        var lat = event.latLng.lat();
+        $('#x-coor').val(event.latLng.lng());
+        $('#y-coor').val(event.latLng.lat());
+        marker.setPosition(event.latLng);
+      });
+
+      map.addListener('mousemove', function(event){
+        $('#x-coor').attr('placeholder',''+event.latLng.lng());
+        $('#y-coor').attr('placeholder',''+event.latLng.lat());
+      })
     }
   </script>
 </head>
@@ -30,7 +43,7 @@
 <body>
 
   <!-- page heading -->
-  <h1 id="heading">Portland Disaster Guesstimater</h1>
+  <h1 id="heading">PDisasterX</h1>
 
   <!--grid container to place everything in-->
   <div class="grid-container">
