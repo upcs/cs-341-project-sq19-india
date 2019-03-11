@@ -40,7 +40,7 @@ $(document).ready(function() {
 		if(checkCoor(firstNum, secondNum) == false) {
 			throw 'Incorrect input';
 		}
-		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor: secondNum}, function(data) {
+		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum}, function(data) {
 			alert(parseInt(data));
 		});
 	});
