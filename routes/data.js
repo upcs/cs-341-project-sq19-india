@@ -24,15 +24,13 @@ router.post('/', urlencodedParser, function(req, res) {
 	if(!req.body) return res.sendStatus(400);
 	var x_coor = parseFloat(req.body.x_coor);
 	var y_coor = parseFloat(req.body.y_coor);
+	var radius = parseFloat(req.body.radius);
 
-	console.log("coordinates recived: \nx: "+x_coor+"\ny: "+y_coor);
+	console.log("coordinates recived: \nx: "+x_coor+"\ny: "+y_coor+"\nradius: "+radius);
 
-	var xRightBound = x_coor + 0.1;
-	var xLeftBound = x_coor - 0.1;
-	var yUpBound = y_coor + 0.1;
-	var yLoBound = y_coor - 0.1;
+	
 
-	var query = "SELECT COUNT(*) AS count FROM TIERONE WHERE (X BETWEEN "+xLeftBound+" AND "+xRightBound+") AND (Y BETWEEN "+yLoBound+" AND "+yUpBound+");";
+	var query = "SELECT COUNT(*) AS count FROM TIERONE WHERE ((X-"+x_coor+")*(X-"+x_coor+"))+((Y-"+y_coor+")*(Y-"+y_coor+"))<=("+radius*radius+");";
 	console.log("query: "+query);
 
 	db.query(query, function(err, result) {
