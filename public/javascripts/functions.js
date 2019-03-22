@@ -41,7 +41,8 @@ $(document).ready(function() {
 			throw 'Incorrect input';
 		}
 		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum}, function(data) {
-			alert(parseInt(data));
+			var parsedData = JSON.parse(data);
+			console.log("police count: "+parsedData.policeCount+"\nFarmer market count: "+parsedData.mktCount+"\nTierone count: "+parsedData.tierOneCount);
 		});
 	});
 });
