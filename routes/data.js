@@ -22,11 +22,20 @@ router.get('/', function(req, res, next) {
 });
 router.post('/', urlencodedParser, function(req, res) {
 	if(!req.body) return res.sendStatus(400);
-	var x_coor = req.body.x_coor;
-	var y_coor = req.body.y_coor;
-	db.query("SELECT COUNT(*) AS count FROM ADDRESS WHERE X BETWEEN " + (x_coor + 250) + " AND " + (x_coor - 250) + " AND Y BETWEEN " + (y_coor + 250) + " AND " + (y_coor - 250), function(err, result) {
+	var x_coor = parseFloat(req.body.x_coor);
+	var y_coor = parseFloat(req.body.y_coor);
+	var radius = parseFloat(req.body.radius);
+
+	console.log("coordinates recived: \nx: "+x_coor+"\ny: "+y_coor+"\nradius: "+radius);
+
+	
+
+	var query = "SELECT COUNT(*) AS count FROM TIERONE WHERE ((X-"+x_coor+")*(X-"+x_coor+"))+((Y-"+y_coor+")*(Y-"+y_coor+"))<=("+radius*radius+");";
+	console.log("query: "+query);
+
+	db.query(query, function(err, result) {
 		if (err) throw err;
-		console.log(result[0].count);
+		console.log(result);
 		res.end((result[0].count).toString());
 	});
 });

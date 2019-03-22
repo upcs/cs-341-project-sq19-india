@@ -11,31 +11,6 @@
   <script src="./javascripts/functions.js"></script>
   <!-- <script src="index.js"></script> -->
   <link rel="stylesheet" href="./stylesheets/style.css">
-
-  <script type="text/javascript">
-    function initMap() {
-      // The location of map
-      var local = { lat: 45.572237, lng: -122.723679 };
-      // The map, centered at local
-      var map = new google.maps.Map(
-        document.getElementById('map'), { zoom: 10, center: local });
-      // The marker, positioned at local
-      var marker = new google.maps.Marker({ position: local, map: map });
-
-      map.addListener('click', function(event){
-        var long = event.latLng.lng();
-        var lat = event.latLng.lat();
-        $('#x-coor').val(event.latLng.lng());
-        $('#y-coor').val(event.latLng.lat());
-        marker.setPosition(event.latLng);
-      });
-
-      map.addListener('mousemove', function(event){
-        $('#x-coor').attr('placeholder',''+event.latLng.lng());
-        $('#y-coor').attr('placeholder',''+event.latLng.lat());
-      })
-    }
-  </script>
 </head>
 
 <!-- main body html -->
@@ -78,6 +53,12 @@
             </td>
           </tr>
         </table>
+        <div class="slidecontainer">
+          <input type="range" min=3000 max=10000 value=5000 class="slider" id="strength" name="strength">
+          <label for="strength">Damage Radius:</label>
+          <label for="strength" id="radius_display">5000m</label>
+        </div>
+
 
         <!-- type of disaster -->
         <select>
