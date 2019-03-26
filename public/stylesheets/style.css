@@ -22,7 +22,7 @@ body{
 }
 
 /*
-    initiates the grid specified in index.html 
+    initiates the grid specified in index.html
     code is modified from code on w3schools
 */
 .grid-container {
@@ -31,7 +31,7 @@ body{
     grid-gap: 2%;
 
   }
-  
+
   .grid-container > div {
     text-align: center;
     font-size: 30px;
@@ -51,14 +51,14 @@ h1{
     font-size: 50;
 }
 
-/* 
-    Set the size of the div element that contains the map 
+/*
+    Set the size of the div element that contains the map
 */
 #map {
     height: 700px;  /* The height is 400 pixels */
     width: 100%;  /* The width is the width of the web page */
    }
- 
+
 /*
     change colors and reposition
 */
@@ -97,4 +97,90 @@ button{
     color: rgba(0, 80, 120, 1);
     background-color: aliceblue;
     border-radius: 7px;
+}
+#header {
+  background: rgb(2, 40, 59);/*dark blue*/
+  margin-bottom: 0;
+  color: rgba(228, 240, 240, 1);/*white*/
+  border-bottom-style: solid;
+  border-color: rgba(78, 121, 136, 1);/*light blue*/
+  font-size: 50;
+}
+
+#title {
+  color: rgba(228, 240, 240, 1);/*white*/
+  display:inline;
+  font-size: 50px;
+  padding-left: 10px;
+  text-decoration:none
+}
+
+#about {
+  color: rgba(228, 240, 240, 1);/*white*/
+  padding-top: 11px;
+  display: inline;
+  float: right;
+  margin-top: 0px;
+  font-size: 30px;
+  padding-right: 20px;
+  text-decoration:none
+}
+
+#title:hover {
+  cursor: pointer;
+  color: rgba(78, 121, 136, 1);
+}
+
+#about:hover {
+  cursor: pointer;
+  color: rgba(78, 121, 136, 1);
+}
+
+#about-text {
+  max-width: 450px;
+  text-align: justify;
+  margin-left: inherit;
+  display: inline-block;
+  font-size: 20px;
+}
+
+#about-page {
+  margin-top: 80px;
+  text-align: center;
+  color: rgb(2, 40, 59);
+}
+
+#about-header {
+  font-size: 30px;
+}
+
+#how-to {
+  text-align: justify;
+  margin-left: inherit;
+  display: inline-block;
+  font-size: 20px;
+}
+
+hr {
+  display: block;
+  unicode-bidi: isolate;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  text-align: center;
+  border-top-width: 3px;
+  border-right-width: 3px;
+  border-bottom-width: 3px;
+  border-left-width: 3px;
+  max-width: 50px;
+}
+
+.dark {
+  border-top-color: rgb(2, 40, 59);
+  border-right-color: rgb(2, 40, 59);
+  border-bottom-color: rgb(2, 40, 59);
+  border-left-color: rgb(2, 40, 59);
 }
