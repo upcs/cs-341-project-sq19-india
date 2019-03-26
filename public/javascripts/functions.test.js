@@ -1,13 +1,13 @@
-const isNum = require('./functions.js');
+const checkCoor = require('./functions.js');
 
 test('is 45 and 68 numbers', () => {
-	expect(isNum(45, 68)).toBe(true);
+	expect(checkCoor(45, 68)).toBe(true);
 });
 
 test('empty inputs', () => {
-	expect(isNum("","")).toBe(false);
+	expect(checkCoor("","")).toBe(false);
 }); 
 
 test('is abc and def numbers', () => {
-	expect(isNum("adc", "def")).toBe(false);
+	expect(checkCoor("adc", "def")).toBe(false);
 });
