@@ -104,7 +104,9 @@ button{
 }
 
 #results-header {
-  font-size: 20px;
+  text-align: center;
+  font-size: 25px;
+  color: rgb(2, 40, 59)
 }
 
 #header {
