@@ -26,7 +26,7 @@ function checkCoor(firstNum, secondNum) {
 		return true;
 	}
 	else {
-		//alert('inputs are incorrect, can only be numbers.');
+		alert('inputs are incorrect, can only be numbers.');
 		return false;
 	}
 }
@@ -124,7 +124,8 @@ $(document).ready(function() {
 
 		//post request
 		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum, radius:radius}, function(data) {
-			alert(parseInt(data)); //display returned data
+			$("#DataDisplay").show(); //display returned data
+			$("#TierOneData").text(data);
 		});
 	});
 
