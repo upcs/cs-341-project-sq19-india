@@ -21,7 +21,8 @@ $(document).ready(function() {
 
 		//post request
 		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum, radius:radius}, function(data) {
-			alert(parseInt(data)); //display returned data
+			var parsedData = JSON.parse(data);
+			alert("police count: "+parsedData.policeCount+",market count: "+parsedData.mktCount+",tier one count: "+parsedData.tierOneCount); //display returned data
 		});
 	});
 
