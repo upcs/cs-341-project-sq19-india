@@ -123,8 +123,9 @@ $(document).ready(function() {
 		}
 
 		//post request
-		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum, radius:radius}, function(data) {
-			alert(parseInt(data)); //display returned data
+		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum}, function(data) {
+			var parsedData = JSON.parse(data);
+			console.log("police count: "+parsedData.policeCount+"\nFarmer market count: "+parsedData.mktCount+"\nTierone count: "+parsedData.tierOneCount);
 		});
 	});
 

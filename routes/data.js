@@ -28,15 +28,17 @@ router.post('/', urlencodedParser, function(req, res) {
 
 	console.log("coordinates received: \nx: "+x_coor+"\ny: "+y_coor+"\nradius: "+radius);
 
-	
-
-	var query = "SELECT COUNT(*) AS count FROM TIERONE WHERE ((X-"+x_coor+")*(X-"+x_coor+"))+((Y-"+y_coor+")*(Y-"+y_coor+"))<=("+radius*radius+");";
+	var policeQuery = "SELECT COUNT(*) FROM POLICE WHERE (X="+parseInt(x_coor)+") AND (Y="+parseInt(y_coor)+")";
+	var farmerMktQuery = "SELECT COUNT(*) FROM FARMERMKT WHERE (X="+parseInt(x_coor)+") AND (Y="+parseInt(y_coor)+")";
+	var tierOneQuery = "SELECT COUNT(*) FROM TIERONE WHERE (X BETWEEN "+xLeftBound+" AND "+xRightBound+") AND (Y BETWEEN "+yLoBound+" AND "+yUpBound+")";
+	var query = "SELECT ("+policeQuery+") AS policeCount,("+farmerMktQuery+") AS mktCount,("+tierOneQuery+") AS tierOneCount";
 	console.log("query: "+query);
 
 	db.query(query, function(err, result) {
 		if (err) throw err;
 		console.log(result);
-		res.end((result[0].count).toString());
+		var data = {"policeCount":result[0].policeCount, "mktCount":result[0].mktCount, "tierOneCount":result[0].tierOneCount};
+		res.end(JSON.stringify(data));
 	});
 });
 
