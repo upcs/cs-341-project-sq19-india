@@ -26,7 +26,7 @@ router.post('/', urlencodedParser, function(req, res) {
 	var y_coor = parseFloat(req.body.y_coor);
 	var radius = parseFloat(req.body.radius);
 
-	console.log("coordinates recived: \nx: "+x_coor+"\ny: "+y_coor+"\nradius: "+radius);
+	console.log("coordinates received: \nx: "+x_coor+"\ny: "+y_coor+"\nradius: "+radius);
 
 	
 
