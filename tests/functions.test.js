@@ -1,4 +1,4 @@
-const checkCoor = require('./functions.js');
+const checkCoor = require('../public/javascripts/functions.js');
 
 test('is 45 and 68 numbers', () => {
 	expect(checkCoor(45, 68)).toBe(true);
@@ -11,3 +11,4 @@ test('empty inputs', () => {
 test('is abc and def numbers', () => {
 	expect(checkCoor("adc", "def")).toBe(false);
 });
+

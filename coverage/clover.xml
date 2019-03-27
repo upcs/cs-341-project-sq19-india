@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1553642380318" clover="3.2.0">
-  <project timestamp="1553642380318" name="All files">
-    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
+<coverage generated="1553645649891" clover="3.2.0">
+  <project timestamp="1553645649891" name="All files">
+    <metrics statements="40" coveredstatements="9" conditionals="8" coveredconditionals="8" methods="8" coveredmethods="2" elements="56" coveredelements="19" complexity="0" loc="40" ncloc="40" packages="1" files="2" classes="2"/>
+    <file name="functions.js" path="C:\Users\Huy\Documents\GitHub\cs-341-project-sq19-india\public\javascripts\functions.js">
+      <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+      <line num="12" count="3" type="cond" truecount="4" falsecount="0"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="24" count="2" type="cond" truecount="4" falsecount="0"/>
+      <line num="26" count="1" type="stmt"/>
+      <line num="30" count="1" type="stmt"/>
+      <line num="34" count="1" type="stmt"/>
+    </file>
+    <file name="initMapFunction.js" path="C:\Users\Huy\Documents\GitHub\cs-341-project-sq19-india\public\javascripts\initMapFunction.js">
+      <metrics statements="34" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="1"/>
+      <line num="4" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
+      <line num="9" count="0" type="stmt"/>
+      <line num="10" count="0" type="stmt"/>
+      <line num="14" count="0" type="stmt"/>
+      <line num="26" count="0" type="stmt"/>
+      <line num="27" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="32" count="0" type="stmt"/>
+      <line num="33" count="0" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="38" count="0" type="stmt"/>
+      <line num="39" count="0" type="stmt"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="41" count="0" type="stmt"/>
+      <line num="45" count="0" type="stmt"/>
+      <line num="46" count="0" type="stmt"/>
+      <line num="47" count="0" type="stmt"/>
+      <line num="48" count="0" type="stmt"/>
+      <line num="49" count="0" type="stmt"/>
+      <line num="50" count="0" type="stmt"/>
+      <line num="51" count="0" type="stmt"/>
+      <line num="54" count="0" type="stmt"/>
+      <line num="55" count="0" type="stmt"/>
+      <line num="56" count="0" type="stmt"/>
+      <line num="57" count="0" type="stmt"/>
+      <line num="58" count="0" type="stmt"/>
+      <line num="59" count="0" type="stmt"/>
+      <line num="60" count="0" type="stmt"/>
+      <line num="64" count="0" type="stmt"/>
+      <line num="65" count="0" type="stmt"/>
+      <line num="66" count="0" type="stmt"/>
+      <line num="68" count="0" type="stmt"/>
+      <line num="71" count="1" type="stmt"/>
+    </file>
   </project>
 </coverage>
