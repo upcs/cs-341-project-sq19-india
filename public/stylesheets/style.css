@@ -71,7 +71,7 @@ h4{
 }
 
 label{
-  color: rgb(2, 40, 59); 
+  color: rgb(2, 40, 59);
   font-size: 10px;
 }
 
@@ -101,7 +101,7 @@ button{
     border-color: rgb(2, 40, 59);
     background-color:aliceblue;
     border-radius: 5px;
-    
+
 }
 
 #DataDisplay {
@@ -200,4 +200,17 @@ hr {
   border-right-color: rgb(2, 40, 59);
   border-bottom-color: rgb(2, 40, 59);
   border-left-color: rgb(2, 40, 59);
+}
+
+.submit-disaster {
+  margin-top: 25px;
+  float: left;
+}
+
+.slidecontainer {
+  float: left;
+}
+
+.angleSlideContainer {
+  float: left;
 }
