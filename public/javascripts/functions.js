@@ -135,5 +135,11 @@ $(document).ready(function() {
 		$('#radius_display').text(radius+"m");
 	});
 
+	$('#disasterType').on('input', function(){
+		if($(this).val() === 'Tornado'){
+			$('#angle').show();
+		}
+	});
+
 });
 module.exports = checkCoor;
