@@ -63,6 +63,7 @@ h1{
     change colors and reposition
 */
 h4{
+    white-space: nowrap;
     color: rgb(2, 40, 59);
     text-align: center;
     margin-bottom: 5%;
@@ -84,19 +85,14 @@ table{
 
 /*dropdown menu*/
 select{
-  margin-top: 2.5%;
-    position: absolute;
-    right: 18%;
+    margin-top: 2.5%;
     background-color:aliceblue;
     color: rgba(0, 80, 120, 1);
 
 }
 /*submit button*/
 button{
-  margin-top: 2.5%;
-    position: absolute;
-    right: 10%;
-    left: auto;
+    margin-top: 2.5%;
     color: rgba(0, 80, 120, 1);
     border-color: rgb(2, 40, 59);
     background-color:aliceblue;
