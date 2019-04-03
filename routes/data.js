@@ -25,17 +25,15 @@ router.post('/', urlencodedParser, function(req, res) {
 	var x_coor = parseFloat(req.body.x_coor);
 	var y_coor = parseFloat(req.body.y_coor);
 	var radius = parseFloat(req.body.radius);
-	var xLeftBound = x_coor - 0.1;
-	var xRightBound = x_coor + 0.1;
-	var yLoBound = y_coor - 0.1;
-	var yUpBound = y_coor + 0.1;
 
 	console.log("coordinates received: \nx: "+x_coor+"\ny: "+y_coor+"\nradius: "+radius);
+
+	var radiusPythag = "(X-"+x_coor+")*(X-"+x_coor+") + (Y-"+y_coor+")*(Y-"+y_coor+")<"+radius+"*"+radius;
 	
-	var policeQuery = "SELECT COUNT(*) FROM POLICE WHERE (X="+parseInt(x_coor)+") AND (Y="+parseInt(y_coor)+")";
-	var farmerMktQuery = "SELECT COUNT(*) FROM FARMERMKT WHERE (X="+parseInt(x_coor)+") AND (Y="+parseInt(y_coor)+")";
-	var tierOneQuery = "SELECT COUNT(*) FROM TIERONE WHERE (X BETWEEN "+xLeftBound+" AND "+xRightBound+") AND (Y BETWEEN "+yLoBound+" AND "+yUpBound+")";
-	var query = "SELECT ("+policeQuery+") AS policeCount,("+farmerMktQuery+") AS mktCount,("+tierOneQuery+") AS tierOneCount";
+	var policeQuery = "SELECT COUNT(*) FROM POLICE WHERE "+radiusPythag;
+	var farmerMktQuery = "SELECT COUNT(*) FROM FARMERMKT WHERE "+radiusPythag;
+	var tierOneQuery = "SELECT COUNT(*) FROM TIERONE WHERE "+radiusPythag;
+	var query = "SELECT ("+policeQuery+") AS policeCount,("+farmerMktQuery+") AS mktCount,("+tierOneQuery+") AS tierOneCount;";
 	
 	console.log("query: "+query);
 
