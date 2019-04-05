@@ -123,7 +123,7 @@ $(document).ready(function() {
 		}
 
 		//post request
-		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum, radius:radius}, function(data) {
+		$.post("/data", {x_coor:firstNum, y_coor:secondNum, radius:radius}, function(data) {
 			$("#DataDisplay").show(); //display returned data
 			data = JSON.parse(data);
 			$("#TierOneData").text(data.tierOneCount);
