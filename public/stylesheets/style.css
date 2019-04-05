@@ -99,6 +99,7 @@ button{
 
 }
 
+/*displays the data*/
 #DataDisplay {
   margin-top: 175px;
   text-align: left;
@@ -110,6 +111,7 @@ button{
   color: rgb(2, 40, 59);
 }
 
+/*about page*/
 #header {
   background: rgb(2, 40, 59);/*dark blue*/
   margin-bottom: 0;
@@ -183,18 +185,12 @@ hr {
   overflow-x: hidden;
   overflow-y: hidden;
   text-align: center;
-  border-top-width: 3px;
-  border-right-width: 3px;
-  border-bottom-width: 3px;
-  border-left-width: 3px;
+  border-width: 3px;
   max-width: 50px;
 }
 
 .dark {
-  border-top-color: rgb(2, 40, 59);
-  border-right-color: rgb(2, 40, 59);
-  border-bottom-color: rgb(2, 40, 59);
-  border-left-color: rgb(2, 40, 59);
+  border-color: rgb(2, 40, 59);
 }
 
 .submit-disaster {
