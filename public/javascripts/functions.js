@@ -31,6 +31,7 @@ function checkCoor(firstNum, secondNum) {
 	}
 }
 
+
 $(document).ready(function() {
 
 	//on SUBMIT button press
@@ -80,4 +81,5 @@ $(document).ready(function() {
 	});
 
 });
+
 module.exports = checkCoor;
