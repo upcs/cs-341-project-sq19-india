@@ -76,8 +76,9 @@ function initMap() {
 	
 	// on slider input, update circle radius
 	google.maps.event.addDomListener(slider, 'input', function(){
-		circle.setRadius(parseFloat(slider.value));
+    circle.setRadius(parseFloat(slider.value));
   });
+
   
   google.maps.event.addDomListener(angleSlider, 'input', function(){
     var angle = angleSlider.value - currAngle;
@@ -88,7 +89,7 @@ function initMap() {
   });
 
   //this also (mostly) from https://stackoverflow.com/questions/26049552/google-maps-api-rotate-rectangle
-  function rotatePolygon(polygon,angle, origin) {
+  function rotatePolygon(polygon, angle, origin) {
     var map = polygon.getMap();
     var prj = map.getProjection();
     //console.log(origin);
