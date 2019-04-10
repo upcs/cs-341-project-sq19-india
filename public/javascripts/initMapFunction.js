@@ -69,30 +69,31 @@ function initMap() {
 
     rectangle.setMap(null);
     rectPoly.setMap(map);
-    console.log('made rect poly');
+    //console.log('made rect poly');
     return rectPoly;
 }
     
 	
 	// on slider input, update circle radius
 	google.maps.event.addDomListener(slider, 'input', function(){
-		circle.setRadius(parseFloat(slider.value));
+    circle.setRadius(parseFloat(slider.value));
   });
+
   
   google.maps.event.addDomListener(angleSlider, 'input', function(){
     var angle = angleSlider.value - currAngle;
-    console.log(currAngle);
+    //console.log(currAngle);
     var pivotPoint = map.getProjection().fromLatLngToPoint(marker.getPosition());
     rotatePolygon(rectanglePoly, angle, pivotPoint);
     currAngle = angleSlider.value;
   });
 
   //this also (mostly) from https://stackoverflow.com/questions/26049552/google-maps-api-rotate-rectangle
-  function rotatePolygon(polygon,angle, origin) {
+  function rotatePolygon(polygon, angle, origin) {
     var map = polygon.getMap();
     var prj = map.getProjection();
-    console.log(origin);
-    console.log(polygon.getPath().getAt(0))
+    //console.log(origin);
+    //console.log(polygon.getPath().getAt(0))
     var coords = polygon.getPath().getArray().map(function(latLng){
        var point = prj.fromLatLngToPoint(latLng);
        var rotatedLatLng =  prj.fromPointToLatLng(rotatePoint(point,origin,angle));
@@ -111,25 +112,29 @@ function rotatePoint(point, origin, angle) {
 
 	//change marker/circle position with text entry (x)
 	google.maps.event.addDomListener(document.getElementById('x-coor'), 'input', function(){
-		var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
+    var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
+    var prevPos = marker.getPosition();
 		marker.setPosition(newPos);
-		circle.setCenter(newPos);
+    circle.setCenter(newPos);
+    translatePolygon(rectanglePoly, newPos, prevPos);
 	});
 
 	//change marker/circle position with text entry (y)
 	google.maps.event.addDomListener(document.getElementById('y-coor'), 'input', function(){
-		var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
+    var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
+    var prevPos = marker.getPosition();
 		marker.setPosition(newPos);
-		circle.setCenter(newPos);
+    circle.setCenter(newPos);
+    translatePolygon(rectanglePoly, newPos, prevPos);
   });
   
   //change shape of damage area based on drop-down select
   google.maps.event.addDomListener(document.getElementById('disasterType'), 'input', function(){
     if($('#disasterType').val() === 'Tornado'){
-      rectangle.setMap(map);
+      rectanglePoly.setMap(map);
       circle.setMap(null);
     } else if ($('#disasterType').val() === 'Earthquake'){
-      rectangle.setMap(null);
+      rectanglePoly.setMap(null);
       circle.setMap(map);
     }
   });
@@ -146,17 +151,25 @@ function rotatePoint(point, origin, angle) {
     translatePolygon(rectanglePoly, event.latLng, prevPos);
   });
   
+  //function to translate a polygon from currentCenter to newCenter
   function translatePolygon(shape, newCenter, currentCenter){
-    var lngOffset = newCenter.lng() - currentCenter.lng();
-    var latOffset = newCenter.lat() - currentCenter.lat();
-    console.log(shape.getPaths());
-    for(var i = 0; i < shape.getPaths().getLength(); i++){
-      shape.getPaths().getAt(i).lat() += latOffset;
-      shape.getPaths().getAt(i).lng() += lngOffset;
-    }
 
+    //create difference vector
+    var diff = new google.maps.LatLng({
+      lat: newCenter.lat() - currentCenter.lat(), 
+      lng: newCenter.lng() - currentCenter.lng()
+    });
+    
+    //map the translation to the paths of our shape
+    var coords = shape.getPath().getArray().map(function(latLng){
+      return {lat: latLng.lat()+diff.lat(), lng: latLng.lng()+diff.lng()};
+    });
+
+    //set the shape's new coordinates
+    shape.setPath(coords);
   }
-	
+  
+  //for when we click on the circle (doesn't register as a click on the map)
 	google.maps.event.addListener(circle, 'click', function(event){
 		var long = event.latLng.lng();
     var lat = event.latLng.lat();
@@ -164,7 +177,16 @@ function rotatePoint(point, origin, angle) {
     $('#y-coor').val(lat);
     marker.setPosition(event.latLng);
     circle.setCenter(event.latLng);
-	});
+  });
+  
+  //for when we click on the rectangle (doesn't register as a click on the map)
+	google.maps.event.addListener(rectanglePoly, 'click', function(event){
+    var prevPos = marker.getPosition();
+    $('#x-coor').val(event.latLng.lng());
+    $('#y-coor').val(event.latLng.lat());
+    marker.setPosition(event.latLng);
+    translatePolygon(rectanglePoly, event.latLng, prevPos);
+  });
 
 	//update placeholder text if no click on map yet
   map.addListener('mousemove', function(event){
