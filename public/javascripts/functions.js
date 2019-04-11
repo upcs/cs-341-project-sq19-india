@@ -8,6 +8,7 @@
   check to see if coordinate inputs are correct
 */
 function checkCoor(firstNum, secondNum) {
+	console.log('checkong coor');
 	//Check to see if any of the box is empty, return false if it is
 	if(firstNum === "" || secondNum === ""){
 		//alert('one of the box is empty.');
