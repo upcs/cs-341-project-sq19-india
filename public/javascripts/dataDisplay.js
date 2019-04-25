@@ -4,8 +4,8 @@ $(document).ready(function() {
 	$('#submitBtn').click(function() {
 
 		//get entered data
-		var firstNum = document.getElementById('x-coor').value;
-		var secondNum = document.getElementById('y-coor').value;
+		var firstNum = parseFloat(document.getElementById('x-coor').textContent);
+		var secondNum = parseFloat(document.getElementById('y-coor').textContent);
 		var radius = parseInt(document.getElementById('strength').value);
 
 		//convert radius from meters to lat/long
