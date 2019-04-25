@@ -143,12 +143,14 @@ function rotatePoint(point, origin, angle) {
   google.maps.event.addListener(map, 'click', function(event){
     var long = event.latLng.lng();
     var lat = event.latLng.lat();
-    $('#x-coor').text(long);
-    $('#y-coor').text(lat);
-    var prevPos = marker.getPosition();
-    marker.setPosition(event.latLng);
-    circle.setCenter(event.latLng);
-    translatePolygon(rectanglePoly, event.latLng, prevPos);
+    if(lat <= 85 && lat >= -85) {
+      $('#x-coor').text(long);
+      $('#y-coor').text(lat);
+      var prevPos = marker.getPosition();
+      marker.setPosition(event.latLng);
+      circle.setCenter(event.latLng);
+      translatePolygon(rectanglePoly, event.latLng, prevPos);
+    }
   });
 
   //function to translate a polygon from currentCenter to newCenter
