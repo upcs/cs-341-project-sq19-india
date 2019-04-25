@@ -53,6 +53,10 @@ $(document).ready(function() {
 		if(!checkCoor(firstNum, secondNum)) {
 			throw 'Incorrect input';
 		}
+		if(firstNum-radius > -122.39 || firstNum+radius < -122.8 || secondNum-radius > 45.6 || secondNum+radius < 44.42 ){
+			alert('Please click closer to Portland');
+			throw 'Too far';
+		}
 
 		//post request
 		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum, radius:radius, disaster:disasterType}, function(data) {
