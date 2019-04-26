@@ -12,8 +12,8 @@ function initMap() {
   var slider = document.getElementById('strength');
   var angleSlider = document.getElementById('angle');
   var currAngle = 0;
-	
-	
+
+
 	// Circle indicating damage radius (in meters)
   var circle = new google.maps.Circle({
       strokeColor: '#FF0000',
@@ -96,7 +96,7 @@ function initMap() {
   //from https://stackoverflow.com/questions/26049552/google-maps-api-rotate-rectangle
   function createPolygonFromRectangle(rectangle) {
     var map = rectangle.getMap();
-  
+
     var coords = [
       { lat: rectangle.getBounds().getNorthEast().lat(), lng: rectangle.getBounds().getNorthEast().lng() },
       { lat: rectangle.getBounds().getNorthEast().lat(), lng: rectangle.getBounds().getSouthWest().lng() },
@@ -109,7 +109,7 @@ function initMap() {
         path: coords
     });
     var properties = ["strokeColor","strokeOpacity","strokeWeight","fillOpacity","fillColor"];
-    //inherit rectangle properties 
+    //inherit rectangle properties
     var options = {};
     properties.forEach(function(property) {
         if (rectangle.hasOwnProperty(property)) {
@@ -122,7 +122,8 @@ function initMap() {
     rectPoly.setMap(map);
     //console.log('made rect poly');
     return rectPoly;
-  }
+}
+
 
 	// on slider input, update circle radius
 	google.maps.event.addDomListener(slider, 'input', function(){
@@ -133,7 +134,7 @@ function initMap() {
     }
   });
 
-  
+
   google.maps.event.addDomListener(angleSlider, 'input', function(){
     var angle = angleSlider.value - currAngle;
     //console.log(currAngle);
@@ -191,11 +192,28 @@ function rotatePoint(point, origin, angle) {
 
 	//change marker/circle position with text entry (y)
 	google.maps.event.addDomListener(document.getElementById('y-coor'), 'input', function(){
+    var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
+    var prevPos = marker.getPosition();
+		marker.setPosition(newPos);
+    circle.setCenter(newPos);
+    translatePolygon(rectanglePoly, newPos, prevPos);
+  });
+
+  //change shape of damage area based on drop-down select
+  google.maps.event.addDomListener(document.getElementById('disasterType'), 'input', function(){
+    if($('#disasterType').val() === 'Tornado'){
+      rectanglePoly.setMap(map);
+      circle.setMap(null);
+    } else if ($('#disasterType').val() === 'Earthquake'){
+      rectanglePoly.setMap(null);
+      circle.setMap(map);
+  	}
+    
     if(checkCoor($('#y-coor').val(), $('#x-coor').val())){
       var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
       moveAllShapes(newPos);
     }
-  });
+  };
 
 	//update marker/circle position and text entries on map click
   google.maps.event.addListener(map, 'click', function(event){
@@ -241,10 +259,10 @@ function rotatePoint(point, origin, angle) {
 
     //create difference vector
     var diff = new google.maps.LatLng({
-      lat: newCenter.lat() - currentCenter.lat(), 
+      lat: newCenter.lat() - currentCenter.lat(),
       lng: newCenter.lng() - currentCenter.lng()
     });
-    
+
     //map the translation to the paths of our shape
     var coords = shape.getPath().getArray().map(function(latLng){
       return {lat: latLng.lat()+diff.lat(), lng: latLng.lng()+diff.lng()};
