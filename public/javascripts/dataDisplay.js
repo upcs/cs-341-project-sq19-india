@@ -1,3 +1,5 @@
+const $ = require('jquery');
+
 $(document).ready(function() {
 
 	//on SUBMIT button press
