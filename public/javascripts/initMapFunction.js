@@ -1,5 +1,4 @@
 
-
 //set up google map
 function initMap() {
   // The location of map
@@ -213,7 +212,7 @@ function rotatePoint(point, origin, angle) {
       var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
       moveAllShapes(newPos);
     }
-  };
+  });
 
 	//update marker/circle position and text entries on map click
   google.maps.event.addListener(map, 'click', function(event){
