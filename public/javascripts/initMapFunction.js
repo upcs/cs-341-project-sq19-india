@@ -1,3 +1,5 @@
+
+
 //set up google map
 function initMap() {
   // The location of map
@@ -39,6 +41,55 @@ function initMap() {
     }
   });
 
+  var floodCoords = [
+    {lat: 45.92,lng: -122.81 },
+    {lat: 45.86 ,lng: -122.79},
+    {lat: 45.79,lng: -122.78},
+    {lat: 45.72,lng: -122.76},
+    {lat: 45.65,lng: -122.75},
+    {lat: 45.61,lng: -122.67},
+    {lat: 45.60,lng: -122.58},
+    {lat: 45.57,lng: -122.49},
+    {lat: 45.56,lng: -122.39},
+    {lat: 45.54,lng: -122.29},
+    {lat: 45.56,lng: -122.19},
+    {lat: 45.59,lng: -122.77},
+    {lat: 45.55,lng: -122.70},
+    {lat: 45.51,lng: -122.67},
+    {lat: 45.45,lng: -122.65},
+    {lat: 45.39,lng: -122.64},
+    {lat: 45.34,lng: -122.62},
+  ];
+
+  var floodCircles = [];
+  for(var i = 0; i < floodCoords.length; i++){
+    floodCircles[i] = new google.maps.Circle({
+      strokeColor: '#FF0000',
+      strokeOpacity: 0.8,
+      strokeWeight: 2,
+      fillColor: '#FF0000',
+      fillOpacity: 0.35,
+      map: null,
+      center: floodCoords[i],
+      radius: parseFloat(document.getElementById('strength').value)
+    })
+  }
+
+  function displayFlood(toggle){
+    console.log('toggling flood display: '+toggle);
+    if(toggle){
+      for(var i = 0; i < floodCircles.length; i++){
+        floodCircles[i].setMap(map);
+        marker.setMap(null)
+      }
+    } else {
+      for(var i = 0; i < floodCircles.length; i++){
+        floodCircles[i].setMap(null);
+        marker.setMap(map);
+      }
+    }
+  }
+
   var rectanglePoly = createPolygonFromRectangle(rectangle);
 
   //function to convert rectangle into polygon (needed in order to rotate)
@@ -76,7 +127,11 @@ function initMap() {
 
 	// on slider input, update circle radius
 	google.maps.event.addDomListener(slider, 'input', function(){
-    circle.setRadius(parseFloat(slider.value));
+    var rad = parseFloat(slider.value);
+    circle.setRadius(rad);
+    for(var i = 0; i < floodCircles.length; i++){
+      floodCircles[i].setRadius(rad);
+    }
   });
 
 
@@ -86,6 +141,23 @@ function initMap() {
     var pivotPoint = map.getProjection().fromLatLngToPoint(marker.getPosition());
     rotatePolygon(rectanglePoly, angle, pivotPoint);
     currAngle = angleSlider.value;
+  });
+
+  //change shape of damage area based on drop-down select
+  google.maps.event.addDomListener(document.getElementById('disasterType'), 'input', function(){
+    if($('#disasterType').val() === 'Tornado'){
+      rectanglePoly.setMap(map);
+      circle.setMap(null);
+      displayFlood(false);
+    } else if ($('#disasterType').val() === 'Earthquake'){
+      rectanglePoly.setMap(null);
+      circle.setMap(map);
+      displayFlood(false);
+    } else if ($('#disasterType').val() === 'Flood'){
+      rectanglePoly.setMap(null);
+      circle.setMap(null);
+      displayFlood(true);
+    }
   });
 
   //this also (mostly) from https://stackoverflow.com/questions/26049552/google-maps-api-rotate-rectangle
@@ -112,11 +184,10 @@ function rotatePoint(point, origin, angle) {
 
 	//change marker/circle position with text entry (x)
 	google.maps.event.addDomListener(document.getElementById('x-coor'), 'input', function(){
-    var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
-    var prevPos = marker.getPosition();
-		marker.setPosition(newPos);
-    circle.setCenter(newPos);
-    translatePolygon(rectanglePoly, newPos, prevPos);
+    if(checkCoor($('#y-coor').val(), $('#x-coor').val())){
+      var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
+      moveAllShapes(newPos);
+    }
 	});
 
 	//change marker/circle position with text entry (y)
@@ -136,22 +207,53 @@ function rotatePoint(point, origin, angle) {
     } else if ($('#disasterType').val() === 'Earthquake'){
       rectanglePoly.setMap(null);
       circle.setMap(map);
+  	}
+    
+    if(checkCoor($('#y-coor').val(), $('#x-coor').val())){
+      var newPos = new google.maps.LatLng(parseFloat($('#y-coor').val()), parseFloat($('#x-coor').val()));
+      moveAllShapes(newPos);
     }
-  });
+  };
 
 	//update marker/circle position and text entries on map click
   google.maps.event.addListener(map, 'click', function(event){
-    var long = event.latLng.lng();
-    var lat = event.latLng.lat();
-    if(lat <= 85 && lat >= -85) {
-      $('#x-coor').text(long);
-      $('#y-coor').text(lat);
-      var prevPos = marker.getPosition();
-      marker.setPosition(event.latLng);
-      circle.setCenter(event.latLng);
-      translatePolygon(rectanglePoly, event.latLng, prevPos);
-    }
+    $('#x-coor').val(event.latLng.lng());
+    $('#y-coor').val(event.latLng.lat());
+    moveAllShapes(event.latLng);
   });
+
+  //for when we click on the circle (doesn't register as a click on the map)
+	google.maps.event.addListener(circle, 'click', function(event){
+    //update text in input fields
+    $('#x-coor').val(event.latLng.lng());
+    $('#y-coor').val(event.latLng.lat());
+    moveAllShapes(event.latLng);
+  });
+  
+  //for when we click on the rectangle (doesn't register as a click on the map)
+	google.maps.event.addListener(rectanglePoly, 'click', function(event){
+    //update text in input fields
+    $('#x-coor').val(event.latLng.lng());
+    $('#y-coor').val(event.latLng.lat());
+    moveAllShapes(event.latLng);
+  });
+
+	//update placeholder text if no click on map yet
+  map.addListener('mousemove', function(event){
+    $('#x-coor').attr('placeholder',''+event.latLng.lng());
+    $('#y-coor').attr('placeholder',''+event.latLng.lat());
+  });
+  return true;
+
+
+
+  //moves polygons to specified position
+  function moveAllShapes(position){
+    var prevPos = marker.getPosition();
+    marker.setPosition(position);
+    circle.setCenter(position);
+    translatePolygon(rectanglePoly, position, prevPos);
+  }
 
   //function to translate a polygon from currentCenter to newCenter
   function translatePolygon(shape, newCenter, currentCenter){
@@ -170,31 +272,6 @@ function rotatePoint(point, origin, angle) {
     //set the shape's new coordinates
     shape.setPath(coords);
   }
-
-  //for when we click on the circle (doesn't register as a click on the map)
-	google.maps.event.addListener(circle, 'click', function(event){
-		var long = event.latLng.lng();
-    var lat = event.latLng.lat();
-    $('#x-coor').val(long);
-    $('#y-coor').val(lat);
-    marker.setPosition(event.latLng);
-    circle.setCenter(event.latLng);
-  });
-
-  //for when we click on the rectangle (doesn't register as a click on the map)
-	google.maps.event.addListener(rectanglePoly, 'click', function(event){
-    var prevPos = marker.getPosition();
-    $('#x-coor').val(event.latLng.lng());
-    $('#y-coor').val(event.latLng.lat());
-    marker.setPosition(event.latLng);
-    translatePolygon(rectanglePoly, event.latLng, prevPos);
-  });
-
-	//update placeholder text if no click on map yet
-  map.addListener('mousemove', function(event){
-    $('#x-coor').attr('placeholder',''+event.latLng.lng());
-    $('#y-coor').attr('placeholder',''+event.latLng.lat());
-  });
   return true;
 }
 

@@ -60,6 +60,8 @@
           </tr>
         </table>
 
+        <p id="rangeMessage" style="display:none">Your coordinates may be out of range.</p>
+
 
         <div class="slidecontainer">
           <input type="range" min=3000 max=10000 value=5000 class="slider" id="strength" name="strength">
@@ -67,7 +69,7 @@
           <label for="strength" id="radius_display">5000m</label>
 
           <div class="angleSlideContainer">
-            <input type="range" min=0 max=6.283 value =0 class="slider" id="angle" name="angle" step=0.01>
+            <input type="range" min=0 max=6.283 value =0 class="slider" id="angle" name="angle" step=0.0001>
             <label for="angle">Angle:</label>
           </div>
 
@@ -76,7 +78,7 @@
           <!-- type of disaster -->
           <select id="disasterType">
             <option value="Tornado">Tornado</option>
-            <option value="Tsunami">Tsunami</option>
+            <option value="Flood">Flood</option>
             <option value="Earthquake">Earthquake</option>
           </select>
 

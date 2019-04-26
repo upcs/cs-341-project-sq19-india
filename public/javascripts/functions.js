@@ -8,6 +8,7 @@
   check to see if coordinate inputs are correct
 */
 function checkCoor(firstNum, secondNum) {
+	console.log('checkong coor');
 	//Check to see if any of the box is empty, return false if it is
 	if(firstNum === "" || secondNum === ""){
 		//alert('one of the box is empty.');
@@ -41,7 +42,9 @@ $(document).ready(function() {
 		var firstNum = parseFloat(document.getElementById('x-coor').textContent);
 		var secondNum = parseFloat(document.getElementById('y-coor').textContent);
 		var radius = parseInt(document.getElementById('strength').value);
+		var angle = parseFloat(document.getElementById('angle').value);
 		var disasterType = document.getElementById('disasterType').value;
+		//alert(disasterType+" "+typeof(disasterType));
 
 		//convert radius from meters to lat/long
 		radius = radius/111000; ///~111000m per degree lat/long
@@ -55,7 +58,7 @@ $(document).ready(function() {
 		}
 
 		//post request
-		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum, radius:radius, disaster:disasterType}, function(data) {
+		$.post("http://localhost:3000/data", {'x_coor':firstNum, 'y_coor':secondNum, 'radius':radius, 'angle': angle, 'disaster': disasterType}, function(data) {
 			$("#DataDisplay").show(); //display returned data
 			data = JSON.parse(data);
 			$("#TierOneData").text(data.tierOneCount);
