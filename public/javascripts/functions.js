@@ -42,7 +42,9 @@ $(document).ready(function() {
 		var firstNum = document.getElementById('x-coor').value;
 		var secondNum = document.getElementById('y-coor').value;
 		var radius = parseInt(document.getElementById('strength').value);
+		var angle = parseFloat(document.getElementById('angle').value);
 		var disasterType = document.getElementById('disasterType').value;
+		//alert(disasterType+" "+typeof(disasterType));
 
 		//convert radius from meters to lat/long
 		radius = radius/111000; ///~111000m per degree lat/long
@@ -56,7 +58,7 @@ $(document).ready(function() {
 		}
 
 		//post request
-		$.post("http://localhost:3000/data", {x_coor:firstNum, y_coor:secondNum, radius:radius, disaster:disasterType}, function(data) {
+		$.post("http://localhost:3000/data", {'x_coor':firstNum, 'y_coor':secondNum, 'radius':radius, 'angle': angle, 'disaster': disasterType}, function(data) {
 			$("#DataDisplay").show(); //display returned data
 			data = JSON.parse(data);
 			$("#TierOneData").text(data.tierOneCount);

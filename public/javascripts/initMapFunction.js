@@ -1,4 +1,4 @@
-var coorChecker = require('./functions');
+
 
 //set up google map
 function initMap() {
@@ -41,7 +41,7 @@ function initMap() {
     }
   });
 
-  var tsunamiCoords = [
+  var floodCoords = [
     {lat: 45.92,lng: -122.81 },
     {lat: 45.86 ,lng: -122.79},
     {lat: 45.79,lng: -122.78},
@@ -61,29 +61,30 @@ function initMap() {
     {lat: 45.34,lng: -122.62},
   ];
 
-  var tsunamiCircles = [];
-  for(var i = 0; i < tsunamiCoords.length; i++){
-    tsunamiCircles[i] = new google.maps.Circle({
+  var floodCircles = [];
+  for(var i = 0; i < floodCoords.length; i++){
+    floodCircles[i] = new google.maps.Circle({
       strokeColor: '#FF0000',
       strokeOpacity: 0.8,
       strokeWeight: 2,
       fillColor: '#FF0000',
       fillOpacity: 0.35,
       map: null,
-      center: tsunamiCoords[i],
+      center: floodCoords[i],
       radius: parseFloat(document.getElementById('strength').value)
     })
   }
 
-  function displayTsunami(toggle){
+  function displayFlood(toggle){
+    console.log('toggling flood display: '+toggle);
     if(toggle){
-      for(var i = 0; i < tsunamiCircles.length; i++){
-        tsunamiCircles[i].setMap(map);
+      for(var i = 0; i < floodCircles.length; i++){
+        floodCircles[i].setMap(map);
         marker.setMap(null)
       }
     } else {
-      for(var i = 0; i < tsunamiCircles.length; i++){
-        tsunamiCircles[i].setMap(null);
+      for(var i = 0; i < floodCircles.length; i++){
+        floodCircles[i].setMap(null);
         marker.setMap(map);
       }
     }
@@ -127,8 +128,8 @@ function initMap() {
 	google.maps.event.addDomListener(slider, 'input', function(){
     var rad = parseFloat(slider.value);
     circle.setRadius(rad);
-    for(var i = 0; i < tsunamiCircles.length; i++){
-      tsunamiCircles[i].setRadius(rad);
+    for(var i = 0; i < floodCircles.length; i++){
+      floodCircles[i].setRadius(rad);
     }
   });
 
@@ -146,15 +147,15 @@ function initMap() {
     if($('#disasterType').val() === 'Tornado'){
       rectanglePoly.setMap(map);
       circle.setMap(null);
-      displayTsunami(false);
+      displayFlood(false);
     } else if ($('#disasterType').val() === 'Earthquake'){
       rectanglePoly.setMap(null);
       circle.setMap(map);
-      displayTsunami(false);
-    } else if ($('#disasterType').val() === 'Tsunami'){
+      displayFlood(false);
+    } else if ($('#disasterType').val() === 'Flood'){
       rectanglePoly.setMap(null);
       circle.setMap(null);
-      displayTsunami(true);
+      displayFlood(true);
     }
   });
 
