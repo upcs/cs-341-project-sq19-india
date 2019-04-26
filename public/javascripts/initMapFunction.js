@@ -233,8 +233,8 @@ function rotatePoint(point, origin, angle) {
   //for when we click on the rectangle (doesn't register as a click on the map)
 	google.maps.event.addListener(rectanglePoly, 'click', function(event){
     //update text in input fields
-    $('#x-coor').val(event.latLng.lng());
-    $('#y-coor').val(event.latLng.lat());
+    $('#x-coor').text(event.latLng.lng());
+    $('#y-coor').text(event.latLng.lat());
     moveAllShapes(event.latLng);
   });
 
