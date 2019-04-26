@@ -101,6 +101,13 @@ $(document).ready(function() {
 		} else {
 			$('.angleSlideContainer').hide();
 		}
+		if($(this).val() === 'Flood'){
+			$('#coordInputTable').hide();
+			$('#coordinateInput').hide();
+		} else {
+			$('#coordInputTable').show();
+			$('#coordinateInput').show();
+		}
 	});
 
 });
