@@ -39,7 +39,7 @@ function checkCoor(firstNum, secondNum) {
 function checkInArea(firstNum, secondNum, radius){
 	//general area
 	if(firstNum-radius > -122.39 || firstNum+radius < -122.8 || secondNum-radius > 45.6 || secondNum+radius < 44.42 ){
-		alert('Please click closer to Portland'+ radius);
+		alert('Please click closer to Portland.');
 		return false;
 	}
 	else{
