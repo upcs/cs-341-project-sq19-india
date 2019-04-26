@@ -207,8 +207,8 @@ function rotatePoint(point, origin, angle) {
   //for when we click on the circle (doesn't register as a click on the map)
 	google.maps.event.addListener(circle, 'click', function(event){
     //update text in input fields
-    $('#x-coor').val(event.latLng.lng());
-    $('#y-coor').val(event.latLng.lat());
+    $('#x-coor').text(event.latLng.lng());
+    $('#y-coor').text(event.latLng.lat());
     moveAllShapes(event.latLng);
   });
   
@@ -225,7 +225,6 @@ function rotatePoint(point, origin, angle) {
     $('#x-coor').attr('placeholder',''+event.latLng.lng());
     $('#y-coor').attr('placeholder',''+event.latLng.lat());
   });
-  return true;
 
 
 
@@ -254,6 +253,7 @@ function rotatePoint(point, origin, angle) {
     //set the shape's new coordinates
     shape.setPath(coords);
   }
+
 }
 
 module.exports = initMap;

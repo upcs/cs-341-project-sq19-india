@@ -48,19 +48,9 @@ router.post('/',  urlencodedParser, function(req, res) {
 	var query;
 	console.log('checking disaster type.');
 	switch(disasterType){
-		case 'Tornado':
-		console.log('got a tornado');
-			var withinRotatedRect = "(COS("+-angle+") * (X-"+x_coor+") - SIN("+-angle+") * (Y - "+y_coor+") + "+x_coor+") - "+x_coor+" < 0.6) AND (SIN("+-angle+") * (X-"+x_coor+") - COS("+-angle+") * (Y - "+y_coor+") + "+y_coor+") - "+y_coor+" < 0.03);";
 
-			policeQuery = "SELECT COUNT(*) FROM POLICE WHERE "+withinRotatedRect;
-			farmerMktQuery = "SELECT COUNT(*) FROM FARMERMKT WHERE "+withinRotatedRect;
-			tierOneQuery = "SELECT COUNT(*) FROM TIERONE WHERE "+withinRotatedRect;
-
-			query = "SELECT ("+policeQuery+") AS policeCount,("+farmerMktQuery+") AS mktCount,("+tierOneQuery+") AS tierOneCount;";
-			console.log("TORNADO QUERY: "+query);
-			break;
-		
-		case 'Earthquake':
+		default:
+			console.log("eq or torn");
 			var radiusPythag = "(X-"+x_coor+")*(X-"+x_coor+") + (Y-"+y_coor+")*(Y-"+y_coor+")<"+radius+"*"+radius;
 		
 			var policeQuery = "SELECT COUNT(*) FROM POLICE WHERE "+radiusPythag;
