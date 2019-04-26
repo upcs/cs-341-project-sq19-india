@@ -31,6 +31,22 @@ function checkCoor(firstNum, secondNum) {
 	}
 }
 
+/*
+	function: checkInArea
+	checks to see if the selected inputs are in the general area of Portland
+*/ 
+
+function checkInArea(firstNum, secondNum, radius){
+	//general area
+	if(firstNum-radius > -122.39 || firstNum+radius < -122.8 || secondNum-radius > 45.6 || secondNum+radius < 44.42 ){
+		alert('Please click closer to Portland.');
+		return false;
+	}
+	else{
+		return true;
+	}
+}
+
 
 $(document).ready(function() {
 
@@ -52,6 +68,9 @@ $(document).ready(function() {
 		//check for correct input
 		if(!checkCoor(firstNum, secondNum)) {
 			throw 'Incorrect input';
+		}
+		if(!checkInArea(firstNum, secondNum, radius)){
+			throw 'Too far';
 		}
 
 		//post request
