@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/upcs/cs-341-project-sq19-india#readme",
   "devDependencies": {
+    "@wapps/jest-google-maps-mock": "0.0.9",
     "jest": "^24.1.0"
   },
   "jest": {

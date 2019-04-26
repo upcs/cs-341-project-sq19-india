@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1553662790486" clover="3.2.0">
-  <project timestamp="1553662790486" name="All files">
-    <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1" elements="15" coveredelements="15" complexity="0" loc="6" ncloc="6" packages="1" files="1" classes="1"/>
+<coverage generated="1556236731039" clover="3.2.0">
+  <project timestamp="1556236731039" name="All files">
+    <metrics statements="7" coveredstatements="7" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1" elements="16" coveredelements="16" complexity="0" loc="7" ncloc="7" packages="1" files="1" classes="1"/>
     <file name="functions.js" path="C:\Users\Huy\Documents\GitHub\cs-341-project-sq19-india\public\javascripts\functions.js">
-      <metrics statements="6" coveredstatements="6" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
+      <metrics statements="7" coveredstatements="7" conditionals="8" coveredconditionals="8" methods="1" coveredmethods="1"/>
       <line num="12" count="3" type="cond" truecount="4" falsecount="0"/>
       <line num="14" count="1" type="stmt"/>
       <line num="24" count="2" type="cond" truecount="4" falsecount="0"/>
       <line num="26" count="1" type="stmt"/>
+      <line num="29" count="1" type="stmt"/>
       <line num="30" count="1" type="stmt"/>
-      <line num="34" count="1" type="stmt"/>
+      <line num="86" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>
